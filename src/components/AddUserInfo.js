@@ -1,6 +1,6 @@
 import React from 'react';
 
-class UserInfo extends React.Component {
+class AddUserInfo extends React.Component {
   state = {
     name: 'Binh',
     address: 'Hoi dan it',
@@ -16,13 +16,18 @@ class UserInfo extends React.Component {
   handleOnSubmit(event) {
     // tránh reload trang
     event.preventDefault();
+    // gọi hàm handleAddNewUser từ component cha
+    this.props.handleAddNewUser({
+      id: Math.floor(Math.random() * 100 + 1) + '-random',
+      name: this.state.name,
+      age: this.state.age,
+    });
 
     console.log(this.state);
   }
   render() {
     return (
       <div>
-        {' '}
         My name is {this.state.name} and I'm {this.state.age} years old.
         <form onSubmit={(event) => this.handleOnSubmit(event)}>
           <label>Enter your name:</label>
@@ -50,4 +55,4 @@ class UserInfo extends React.Component {
   }
 }
 
-export default UserInfo;
+export default AddUserInfo;
