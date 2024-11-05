@@ -18,12 +18,11 @@ class MyComponent extends React.Component {
   }
   render() {
     return (
-      <div>
-        {/* pass func as props */}
+      <>
         <AddUserInfo handleAddNewUser={this.handleAddNewUser} />
         <br /> <br />
         <DisplayInfo listUsers={this.state.listUsers} />
-      </div>
+      </>
     );
   }
 }
