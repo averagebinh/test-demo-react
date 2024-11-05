@@ -1,13 +1,20 @@
 import React from 'react';
 class DisplayInfo extends React.Component {
   render() {
-    //props => properties, tai san
     // destructuring array/object
-    const { name, age } = this.props;
+    const { listUsers } = this.props;
+    console.log(listUsers);
     return (
       <div>
-        <div>My name's {name}</div>
-        <div>My age's {age} years old</div>
+        {listUsers.map((user) => {
+          return (
+            <div>
+              <div>My name's {user.name}</div>
+              <div>My age's {user.age} years old</div>
+              <hr />
+            </div>
+          );
+        })}
       </div>
     );
   }
