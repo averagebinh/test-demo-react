@@ -2,12 +2,31 @@ import React from 'react';
 import './DisplayInfo.scss';
 import logo from './../logo.svg';
 class DisplayInfo extends React.Component {
-  state = { isShowListUser: true };
+  constructor(props) {
+    console.log('>>>>>constructor:1');
+    super(props);
+    this.state = { isShowListUser: true };
+  }
+  componentDidMount() {
+    console.log('>>>>>componentDidMount');
+    setTimeout(() => {
+      document.title = 'BOP';
+    }, 1000);
+  }
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log('>>>>>componentDidUpdate', this.props, prevProps);
+    if (this.props.listUsers !== prevProps.listUsers) {
+      if (this.props.listUsers.length === 5) {
+        console.log('you got 5 users');
+      }
+    }
+  }
   handleShowHide() {
     this.setState({ isShowListUser: !this.state.isShowListUser });
   }
 
   render() {
+    console.log('>>>>>render');
     // destructuring array/object
     const { listUsers } = this.props;
     {
