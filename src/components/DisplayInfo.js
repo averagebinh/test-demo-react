@@ -1,4 +1,5 @@
 import React from 'react';
+import './DisplayInfo.scss';
 class DisplayInfo extends React.Component {
   state = { isShowListUser: true };
   handleShowHide() {
