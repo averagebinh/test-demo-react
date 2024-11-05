@@ -6,12 +6,15 @@ class MyComponent extends React.Component {
     address: 'Hoi dan it',
     age: 26,
   };
-  handleClick(event) {
+  handleClick = (event) => {
     console.log('>>>>> Click me my button!');
-    console.log(event.target);
-  }
+    this.setState({
+      name: 'Binh Nguyen',
+      age: Math.floor(Math.random() * 100) + 1,
+    });
+  };
   handleOnMouseOver(event) {
-    console.log(event.pageX);
+    // console.log(event.pageX);
   }
   render() {
     return (
@@ -19,7 +22,13 @@ class MyComponent extends React.Component {
         <h1>Hello, {this.state.name}</h1>
         <p>Address: {this.state.address}</p>
         <p>Age: {this.state.age}</p>
-        <button onClick={this.handleClick}>Click me!</button>
+        <button
+          onClick={(event) => {
+            this.handleClick(event);
+          }}
+        >
+          Click me!
+        </button>
         <button onMouseOver={this.handleOnMouseOver}>Hover me!</button>
       </div>
     );
