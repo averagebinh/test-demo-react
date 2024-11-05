@@ -13,23 +13,29 @@ class MyComponent extends React.Component {
       age: Math.floor(Math.random() * 100) + 1,
     });
   };
-  handleOnMouseOver(event) {
-    // console.log(event.pageX);
+
+  handleOnChangeInput(event) {
+    this.setState({ name: event.target.value });
+  }
+  handleOnSubmit(event) {
+    // tránh reload trang
+    event.preventDefault();
+    alert('me');
+    console.log(this.state);
   }
   render() {
     return (
       <div>
-        <h1>Hello, {this.state.name}</h1>
-        <p>Address: {this.state.address}</p>
-        <p>Age: {this.state.age}</p>
-        <button
-          onClick={(event) => {
-            this.handleClick(event);
-          }}
-        >
-          Click me!
-        </button>
-        <button onMouseOver={this.handleOnMouseOver}>Hover me!</button>
+        My name is {this.state.name} and I'm {this.state.age} years old.
+        <form onSubmit={(event) => this.handleOnSubmit(event)}>
+          <input
+            type='text'
+            onChange={(event) => {
+              this.handleOnChangeInput(event);
+            }}
+          />
+          <button>submit</button>
+        </form>
       </div>
     );
   }
