@@ -34,7 +34,7 @@ class UserInfo extends React.Component {
             }}
           />
           <button>submit</button>
-          <br />
+
           <label>Enter your age:</label>
           <input
             value={this.state.age}
