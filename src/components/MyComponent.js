@@ -11,17 +11,24 @@ class MyComponent extends React.Component {
     ],
   };
   // define function as props
-  handleAddNewUser(userObj) {
+  handleAddNewUser = (userObj) => {
     alert('me');
     console.log('userObj', userObj);
     this.setState({ listUsers: [userObj, ...this.state.listUsers] });
-  }
+  };
+  handleDeleteUser = (id) => {
+    const newListUsers = this.state.listUsers.filter((user) => user.id !== id);
+    this.setState({ listUsers: newListUsers });
+  };
   render() {
     return (
       <>
         <AddUserInfo handleAddNewUser={this.handleAddNewUser} />
         <br /> <br />
-        <DisplayInfo listUsers={this.state.listUsers} />
+        <DisplayInfo
+          listUsers={this.state.listUsers}
+          handleDeleteUser={this.handleDeleteUser}
+        />
       </>
     );
   }

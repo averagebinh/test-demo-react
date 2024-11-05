@@ -29,7 +29,11 @@ class AddUserInfo extends React.Component {
     return (
       <div>
         My name is {this.state.name} and I'm {this.state.age} years old.
-        <form onSubmit={(event) => this.handleOnSubmit(event)}>
+        <form
+          onSubmit={(event) => {
+            this.handleOnSubmit(event);
+          }}
+        >
           <label>Enter your name:</label>
           <input
             value={this.state.name}
