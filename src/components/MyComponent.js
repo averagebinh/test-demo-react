@@ -12,7 +12,6 @@ class MyComponent extends React.Component {
   };
   // define function as props
   handleAddNewUser = (userObj) => {
-    alert('me');
     console.log('userObj', userObj);
     this.setState({ listUsers: [userObj, ...this.state.listUsers] });
   };
