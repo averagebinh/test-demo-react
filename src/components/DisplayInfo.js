@@ -38,7 +38,6 @@ import logo from './../logo.svg';
 
 //stateless
 const DisplayInfo = (props) => {
-  const { listUsers } = props;
   const [isShowHideListUser, setIsShowHideListUser] = useState(true);
   const handleShowHideListUser = () => {
     setIsShowHideListUser(!isShowHideListUser);
@@ -52,7 +51,7 @@ const DisplayInfo = (props) => {
       </div>
       {isShowHideListUser && (
         <>
-          {listUsers.map((user) => {
+          {props.listUsers.map((user) => {
             return (
               <div key={user.id} className={+user.age > 18 ? 'green' : 'red'}>
                 <div>

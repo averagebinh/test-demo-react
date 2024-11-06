@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
 
 const AddUserInfo = (props) => {
-  const [state, setState] = useState({ state });
-  state = {
-    name: 'Binh',
-    address: 'Hoi dan it',
-    age: 26,
-  };
+  const [name, setName] = useState('');
+  const [address, setAddress] = useState('Hoi dan it');
+  const [age, setAge] = useState('');
 
   const handleOnChangeInput = (event) => {
-    setState({ name: event.target.value });
+    setName(event.target.value);
   };
   const handleOnChangeAge = (event) => {
-    setState({ age: event.target.value });
+    setAge(event.target.value);
   };
   const handleOnSubmit = (event) => {
     // tránh reload trang
@@ -20,23 +17,21 @@ const AddUserInfo = (props) => {
     // gọi hàm handleAddNewUser từ component cha
     props.handleAddNewUser({
       id: Math.floor(Math.random() * 100 + 1) + '-random',
-      name: state.name,
-      age: state.age,
+      name: name,
+      age: age,
     });
-
-    console.log(this.state);
   };
   return (
     <div>
-      My name is {state.name} and I'm {state.age} years old.
+      My name is {name} and I'm {age} years old.
       <form
         onSubmit={(event) => {
-          this.handleOnSubmit(event);
+          handleOnSubmit(event);
         }}
       >
         <label>Enter your name:</label>
         <input
-          value={this.state.name}
+          value={name}
           type='text'
           onChange={(event) => {
             handleOnChangeInput(event);
@@ -46,7 +41,7 @@ const AddUserInfo = (props) => {
 
         <label>Enter your age:</label>
         <input
-          value={this.state.age}
+          value={age}
           type='text'
           onChange={(event) => {
             handleOnChangeAge(event);
