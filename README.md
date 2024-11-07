@@ -74,3 +74,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 # install react-router-dom bootstrap and react bootstrap
 
 npm install --save-exact react-router-dom@6.3.0 bootstrap@5.2.0 react-bootstrap@2.4.0
+
+# install React-Pro-SideBar
+
+npm install --save-exact react-pro-sidebar@0.7.1
