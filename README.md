@@ -78,3 +78,8 @@ npm install --save-exact react-router-dom@6.3.0 bootstrap@5.2.0 react-bootstrap@
 # install React-Pro-SideBar
 
 npm install --save-exact react-pro-sidebar@0.7.1
+
+# install react-icons
+
+read https://github.com/react-icons/react-icons
+Configuration to style icons

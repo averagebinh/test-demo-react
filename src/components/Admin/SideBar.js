@@ -17,6 +17,11 @@ import {
   SidebarContent,
 } from 'react-pro-sidebar';
 import sidebarBg from '../../assets/bg2.jpg';
+
+import { DiReact } from 'react-icons/di';
+import { MdDashboard } from 'react-icons/md';
+import './SideBar.scss';
+
 const SideBar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
   return (
     <>
@@ -40,7 +45,9 @@ const SideBar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
               whiteSpace: 'nowrap',
             }}
           >
-            Hoi Dan It
+            <DiReact size={'3em'} color={'00bfff'} />
+
+            <span>Hoi Dan It</span>
           </div>
         </SidebarHeader>
 
@@ -48,20 +55,16 @@ const SideBar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
           <Menu iconShape='circle'>
             <MenuItem
               icon={<FaTachometerAlt />}
-              suffix={<span className='badge red'>New</span>}
+              //   suffix={<span className='badge red'>New</span>}
             >
               Dashboard
             </MenuItem>
-            <MenuItem icon={<FaGem />}>Components</MenuItem>
           </Menu>
           <Menu iconShape='circle'>
-            <SubMenu
-              suffix={<span className='badge yellow'>3</span>}
-              icon={<FaRegLaughWink />}
-            >
-              <MenuItem> 1</MenuItem>
-              <MenuItem> 2</MenuItem>
-              <MenuItem> 3</MenuItem>
+            <SubMenu icon={<FaGem />} title='Features'>
+              <MenuItem> Quản lý users</MenuItem>
+              <MenuItem> Quản lý bài quiz</MenuItem>
+              <MenuItem> Quản lý câu hỏi</MenuItem>
             </SubMenu>
           </Menu>
         </SidebarContent>
@@ -74,7 +77,7 @@ const SideBar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
             }}
           >
             <a
-              href='https://github.com/azouaoui-med/react-pro-sidebar'
+              href='https://github.com/averagebinh/test-demo-react/'
               target='_blank'
               className='sidebar-btn'
               rel='noopener noreferrer'
