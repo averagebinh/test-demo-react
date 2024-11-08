@@ -22,6 +22,7 @@ root.render(
 
           <Route path='/users' element={<User />} />
         </Route>
+
         <Route path='/admins' element={<Admin />}>
           <Route index element={<DashBoard />} />
 

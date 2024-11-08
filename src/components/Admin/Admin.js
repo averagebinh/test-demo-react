@@ -11,6 +11,7 @@ const Admin = () => {
       <div className='admin-sidebar'>
         <SideBar collapsed={collapsed} />
       </div>
+
       <div className='admin-content'>
         <div className='admin-header'>
           <FaBars
