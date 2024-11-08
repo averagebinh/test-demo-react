@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import dog from '../../../assets/dog.jpg';
 import { FcPlus } from 'react-icons/fc';
 
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { postCreateNewUser } from '../../../services/apiServices';
 const ModalCreateUser = (props) => {
   const { show, setShow } = props;
@@ -46,7 +45,7 @@ const ModalCreateUser = (props) => {
   };
   const handleSubmitCreateUser = async () => {
     try {
-      validate;
+      // validate;
       const isValidEmail = validateEmail(email);
       if (!isValidEmail) {
         toast.error('Invalid email');
