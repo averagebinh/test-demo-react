@@ -48,7 +48,7 @@ const SideBar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
           >
             <DiReact size={'3em'} color={'00bfff'} />
 
-            <span>Hoi Dan It</span>
+            <span>Quiz App</span>
           </div>
         </SidebarHeader>
 
