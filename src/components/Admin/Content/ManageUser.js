@@ -7,11 +7,15 @@ import { useState, useEffect } from 'react';
 import TableUser from './TableUser';
 import ModalUpdateUser from './ModalUpdateUser';
 import ModalViewUser from './ModalViewUser';
+import ModalDeleteUser from './ModalDeleteUser';
 const ManageUser = () => {
   const [showModalCreateUser, setShowModalCreateUser] = useState(false);
   const [showModalUpdateUser, setShowModalUpdateUser] = useState(false);
   const [showModalViewUser, setShowModalViewUser] = useState(false);
   const [dataUpdateUser, setDataUpdateUser] = useState({});
+  const [showModalDeleteUser, setShowModalDeleteUser] = useState(false);
+  const [dataDelete, setDataDelete] = useState({});
+
   const [listUsers, setListUsers] = useState([]);
 
   //   componentDidMount;
@@ -40,6 +44,10 @@ const ManageUser = () => {
     setShowModalViewUser(true);
     setDataUpdateUser(user);
   };
+  const handleClickBtnDelete = (user) => {
+    setShowModalDeleteUser(true);
+    setDataDelete(user);
+  };
 
   return (
     <div className='manage-user-container'>
@@ -60,6 +68,7 @@ const ManageUser = () => {
             listUsers={listUsers}
             handleClickBtnUpdate={handleClickBtnUpdate}
             handleClickBtnView={handleClickBtnView}
+            handleClickBtnDelete={handleClickBtnDelete}
           />
         </div>
         <ModalCreateUser
@@ -79,6 +88,11 @@ const ManageUser = () => {
           setShow={setShowModalViewUser}
           dataUpdateUser={dataUpdateUser}
           resetDataUpdateUser={resetDataUpdateUser}
+        />
+        <ModalDeleteUser
+          show={showModalDeleteUser}
+          setShow={setShowModalDeleteUser}
+          dataDelete={dataDelete}
         />
       </div>
     </div>

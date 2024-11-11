@@ -91,7 +91,7 @@ const ModalUpdateUser = (props) => {
       alert('There was an error creating the user. Please try again.');
     }
   };
-  console.log('check render Modal Update', dataUpdateUser);
+
   return (
     <>
       <Modal
