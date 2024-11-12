@@ -8,7 +8,6 @@ const ModalDeleteUser = (props) => {
 
   const handleClose = () => setShow(false);
   const handleSubmitDeleteUser = async () => {
-    alert('me');
     let data = await deleteUser(dataDelete.id);
     //EM err message
     //EC err code 0 success 1 fail

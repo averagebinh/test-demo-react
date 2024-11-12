@@ -2,7 +2,21 @@
   .header {
     height: 45px;
     text-align: right;
-    border: 1px solid red;
+
+    padding: 5px 100px 0 100px;
+    button {
+      border: none;
+      padding: 3px 15px;
+      margin-left: 15px;
+      border-radius: 5px;
+      color: black;
+      background: #f9f9f9;
+      border: 1px solid;
+      &:hover {
+        background: black;
+        color: white;
+      }
+    }
   }
 
   .title {
@@ -31,6 +45,9 @@
       border-radius: 5px;
       color: white;
       background: black;
+    }
+    .back {
+      cursor: pointer;
     }
   }
 }
