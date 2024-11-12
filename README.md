@@ -83,3 +83,9 @@ npm install --save-exact react-pro-sidebar@0.7.1
 
 read https://github.com/react-icons/react-icons
 Configuration to style icons
+
+# Redux steps
+
+1. Khai báo dispatch + actions
+2. Khai báo reducer + logic
+3. Sử dụng state của Redux
