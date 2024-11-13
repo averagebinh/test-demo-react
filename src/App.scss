@@ -9,14 +9,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-@media (min-width: 1400px) {
+@media (min-width: 1200px) {
   .container,
   .container-lg,
   .container-md,
   .container-sm,
   .container-xl,
   .container-xxl {
-    max-width: 1920px !important;
+    max-width: 1690px !important;
   }
 }
 .app-container {
