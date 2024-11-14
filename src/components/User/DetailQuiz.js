@@ -7,7 +7,7 @@ import Question from './Question';
 const DetailQuiz = (props) => {
   const params = useParams();
   const location = useLocation();
-  console.log(location);
+
   const quizId = params.id;
   //state data
   const [dataQuiz, setDataQuiz] = useState([]);
@@ -40,6 +40,8 @@ const DetailQuiz = (props) => {
               questionDescription = item.description;
               image = item.image;
             }
+            // add isSelected prop to each answer and push to answers array
+            item.answers.isSelected = false;
             answers.push(item.answers);
           });
           // console.log('value', value, 'key', key);
@@ -50,6 +52,7 @@ const DetailQuiz = (props) => {
       // console.log('data', data);
     }
   };
+
   const handlePrev = () => {
     if (index === 0) return;
     setIndex(index - 1);
@@ -58,7 +61,35 @@ const DetailQuiz = (props) => {
     if (index === dataQuiz.length - 1) return;
     setIndex(index + 1);
   };
-  console.log('dataQuiz', dataQuiz);
+  const handleFinish = () => {
+    console.log('finshed');
+  };
+
+  // update state id selected
+  const handleAnswerSelection = (answerId, questionId) => {
+    let dataQuizClone = _.cloneDeep(dataQuiz); //react hook does not allow to mutate state directly
+    let question = dataQuizClone.find(
+      //find question by id from child component
+      (item) => +item.questionId === +questionId
+    );
+    if (question && question.answers) {
+      //find answer by id from child component
+      question.answers.map((item) => {
+        if (+item.id === +answerId) {
+          item.isSelected = !item.isSelected; //toggle isSelected
+        }
+        return item;
+      });
+    }
+    let index = dataQuizClone.findIndex(
+      (item) => +item.questionId === +questionId
+    ); //find index of question
+    if (index > -1) {
+      dataQuizClone[index] = question; //update question
+      setDataQuiz(dataQuizClone); //update state
+    }
+  };
+
   return (
     <div className='detail-quiz-container'>
       <div className='left-content'>
@@ -73,6 +104,7 @@ const DetailQuiz = (props) => {
         <div className='q-content'>
           <Question
             index={index}
+            handleAnswerSelection={handleAnswerSelection}
             data={dataQuiz && dataQuiz.length > 0 ? dataQuiz[index] : []}
           />
         </div>
@@ -84,6 +116,9 @@ const DetailQuiz = (props) => {
 
           <button className='btn btn-primary' onClick={() => handleNext()}>
             Next
+          </button>
+          <button className='btn btn-warning' onClick={() => handleFinish()}>
+            Finish
           </button>
         </div>
       </div>

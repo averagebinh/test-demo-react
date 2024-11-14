@@ -89,3 +89,5 @@ Configuration to style icons
 1. Khai báo dispatch + actions
 2. Khai báo reducer + logic
 3. Sử dụng state của Redux
+
+# 86 Xử lý data khi chọn câu trả lời
