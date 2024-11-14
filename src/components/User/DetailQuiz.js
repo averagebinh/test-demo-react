@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
-import { getDataQuiz } from '../../services/apiServices';
+import { getDataQuiz, postSubmitQuiz } from '../../services/apiServices';
 import _ from 'lodash';
 import './DetailQuiz.scss';
 import Question from './Question';
+import ModalResult from './ModalResult';
 const DetailQuiz = (props) => {
   const params = useParams();
   const location = useLocation();
@@ -14,6 +15,9 @@ const DetailQuiz = (props) => {
   //which question is being displayed
   const [index, setIndex] = useState(0);
   //next index + 1, prev index - 1
+
+  const [isShowResult, setIsShowResult] = useState(false);
+  const [dataModal, setDataModal] = useState({});
 
   //get data quiz, parent component hold state data, later pass to child component (each question)
   useEffect(() => {
@@ -86,20 +90,7 @@ const DetailQuiz = (props) => {
       setDataQuiz(dataQuizClone); //update state
     }
   };
-  const handleFinishQuiz = () => {
-    //   {
-    //     "quizId": 1,
-    //     "answers": [
-    //         {
-    //             "questionId": 1,
-    //             "userAnswerId": [3]
-    //         },
-    //         {
-    //             "questionId": 2,
-    //             "userAnswerId": [6]
-    //         }
-    //     ]
-    // }
+  const handleFinishQuiz = async () => {
     console.log('>>>check data before submit: ', dataQuiz);
     let payload = {
       quizId: +quizId,
@@ -121,7 +112,19 @@ const DetailQuiz = (props) => {
         answers.push({ questionId, userAnswerId });
       });
       payload.answers = answers;
-      console.log('>>>payload: ', payload);
+      //submit api
+      let res = await postSubmitQuiz(payload);
+      console.log('>>>check res: ', res);
+      if (res.EC === 0) {
+        setDataModal({
+          countCorrect: res.DT.countCorrect,
+          countTotal: res.DT.countTotal,
+          quizData: res.DT.quizData,
+        });
+        setIsShowResult(true);
+      } else {
+        alert('Submit quiz failed');
+      }
     }
   };
 
@@ -161,6 +164,11 @@ const DetailQuiz = (props) => {
         </div>
       </div>
       <div className='right-content'>Count down</div>
+      <ModalResult
+        show={isShowResult}
+        setShow={setIsShowResult}
+        dataModal={dataModal}
+      />
     </div>
   );
 };
