@@ -8,12 +8,11 @@ const ListQuiz = (props) => {
   //goi 1 lan duy nhat
   useEffect(() => {
     getQuizData();
-    console.log('checking state', arrQuiz);
   }, []);
 
   const getQuizData = async () => {
     const res = await getQuizByUser();
-    console.log('res', res);
+
     if (res && res.EC === 0) {
       setArrQuiz(res.DT);
     }

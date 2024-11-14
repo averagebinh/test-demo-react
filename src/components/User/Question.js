@@ -6,7 +6,6 @@ const Question = (props) => {
   //id answer-question-id aId, qId
   // let parent process data
   const handleCheckbox = (e, aId, qId) => {
-    console.log('data props', aId, qId);
     props.handleAnswerSelection(aId, qId);
   };
   return (
