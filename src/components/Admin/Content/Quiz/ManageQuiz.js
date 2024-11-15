@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import './ManageQuiz.scss';
 import Select from 'react-select';
-import { postCreateNewQuiz } from '../../../../services/apiServices';
+import {
+  getAllQuizForAdmin,
+  postCreateNewQuiz,
+} from '../../../../services/apiServices';
 import { toast } from 'react-toastify';
 import TableQuiz from './TableQuiz';
 import Accordion from 'react-bootstrap/Accordion';
@@ -35,6 +38,7 @@ const ManageQuiz = (props) => {
       setDescription('');
       setQuizType('EASY');
       setImage(null);
+      await getAllQuizForAdmin();
     } else {
       toast.error(res.EM);
     }
