@@ -3,7 +3,7 @@ import SideBar from './SideBar';
 import { FaHeart, FaBars } from 'react-icons/fa';
 import './Admin.scss';
 import { Outlet } from 'react-router-dom';
-
+import PerfectScrollbar from 'react-perfect-scrollbar';
 const Admin = () => {
   const [collapsed, setCollapsed] = useState(false);
   return (
@@ -20,8 +20,12 @@ const Admin = () => {
             }}
           />
         </div>
+        {/* scroll bar for body */}
+
         <div className='admin-main'>
-          <Outlet />
+          <PerfectScrollbar>
+            <Outlet />
+          </PerfectScrollbar>
         </div>
       </div>
     </div>
