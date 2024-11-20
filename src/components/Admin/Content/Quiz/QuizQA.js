@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import Select from 'react-select';
-import './Questions.scss';
+import './QuizQA.scss';
 import { BsFillPatchPlusFill, BsFillPatchMinusFill } from 'react-icons/bs';
 import { AiOutlineMinusCircle, AiFillPlusSquare } from 'react-icons/ai';
 import { RiImageAddFill } from 'react-icons/ri';
@@ -15,7 +15,7 @@ import {
 } from '../../../../services/apiServices';
 import { toast } from 'react-toastify';
 
-const Questions = (props) => {
+const QuizQA = (props) => {
   // Fake data
   const initQuestions = [
     {
@@ -212,9 +212,6 @@ const Questions = (props) => {
 
   return (
     <div className='questions-container'>
-      <div className='title'>Manage Questions</div>
-      <hr />
-
       <div className='add-new-question'>
         <div className='col-6 form-group'>
           <label className='mb-2'>Select Quiz</label>
@@ -378,4 +375,4 @@ const Questions = (props) => {
   );
 };
 
-export default Questions;
+export default QuizQA;
