@@ -7,14 +7,12 @@ import { RiImageAddFill } from 'react-icons/ri';
 import { v4 as uuidv4 } from 'uuid';
 import _, { set } from 'lodash';
 import Lightbox from 'react-awesome-lightbox';
+import {
+  getAllQuizForAdmin,
+  postCreateNewQuestionForQuiz,
+  postCreateNewAnswerForQuestion,
+} from '../../../../services/apiServices';
 const Questions = (props) => {
-  const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' },
-  ];
-
-  const [selectedQuiz, setSelectedQuiz] = useState(null);
   // Fake data
   const [questions, setQuestions] = useState([
     {
@@ -38,7 +36,27 @@ const Questions = (props) => {
     title: '',
     url: '',
   });
+  // get all quiz
+  const [listQuiz, setListQuiz] = useState([]);
+  const [selectedQuiz, setSelectedQuiz] = useState(null);
+  useEffect(() => {
+    fetchQuiz();
+  }, []);
 
+  const fetchQuiz = async () => {
+    let res = await getAllQuizForAdmin();
+    if (res && res.EC === 0) {
+      let newQuiz = res.DT.map((item) => {
+        return {
+          value: item.id,
+          label: `${item.id} - ${item.description}`,
+        };
+      });
+      setListQuiz(newQuiz);
+      console.log('List quiz', res.DT);
+    }
+  };
+  console.log('list quiz', listQuiz);
   const handleAddRemoveQuestion = (type, id) => {
     console.log('>>>check: ', type, id);
     if (type === 'ADD') {
@@ -88,13 +106,12 @@ const Questions = (props) => {
     }
   };
 
-  const handleOnchange = (type, questionId, answerId, value) => {
+  const handleOnchange = ({ type, questionId, answerId, value }) => {
     let questionsClone = _.cloneDeep(questions);
     let index = questionsClone.findIndex((item) => item.id === questionId);
-
     if (index > -1) {
       if (type === 'QUESTION') {
-        questionsClone[index].description = value;
+        questionsClone[index].description = value || '';
       } else if (type === 'ANSWER') {
         let answerIndex = questionsClone[index].answers.findIndex(
           (item) => item.id === answerId
@@ -111,6 +128,7 @@ const Questions = (props) => {
         }
       }
       setQuestions(questionsClone);
+      console.log(questions);
     }
   };
 
@@ -129,10 +147,6 @@ const Questions = (props) => {
     }
   };
 
-  const handleSubmitQuestionForQuiz = () => {
-    console.log('questions ', questions);
-  };
-
   const handlePreviewImage = (questionId) => {
     console.log(questionId);
     let questionsClone = _.cloneDeep(questions);
@@ -149,7 +163,28 @@ const Questions = (props) => {
     }
   };
 
-  console.log('qustions ', questions);
+  const handleSubmitQuestionForQuiz = async () => {
+    console.log('questions ', questions, selectedQuiz);
+    // postCreateNewQuestionForQuiz, postCreateNewAnswerForQuestion;
+    //submit questions
+
+    //submit answers
+    for (const question of questions) {
+      const q = await postCreateNewQuestionForQuiz(
+        +selectedQuiz.value,
+        question.description,
+        question.imageFile
+      );
+
+      for (const answer of question.answers) {
+        await postCreateNewAnswerForQuestion(
+          answer.description,
+          answer.isCorrect,
+          q.DT.id
+        );
+      }
+    }
+  };
 
   return (
     <div className='questions-container'>
@@ -162,7 +197,7 @@ const Questions = (props) => {
           <Select
             defaultValue={selectedQuiz}
             onChange={setSelectedQuiz}
-            options={options}
+            options={listQuiz}
           />
         </div>
 
@@ -181,11 +216,12 @@ const Questions = (props) => {
                       placeholder='name@example.com'
                       value={question.description}
                       onChange={(event) =>
-                        handleOnchange(
-                          'QUESTION',
-                          question.id,
-                          event.target.value
-                        )
+                        handleOnchange({
+                          type: 'QUESTION',
+                          questionId: question.id,
+                          answerId: null,
+                          value: event.target.value,
+                        })
                       }
                     />
                     <label>Question {index + 1}'s description </label>
@@ -241,12 +277,12 @@ const Questions = (props) => {
                           type='checkbox'
                           checked={answer.isCorrect}
                           onChange={(event) =>
-                            handleOnchange(
-                              'CHECKBOX',
-                              question.id,
-                              answer.id,
-                              event.target.checked
-                            )
+                            handleOnchange({
+                              type: 'CHECKBOX',
+                              questionId: question.id,
+                              answerId: answer.id,
+                              value: event.target.checked,
+                            })
                           }
                         />
 
@@ -254,12 +290,12 @@ const Questions = (props) => {
                           <input
                             value={answer.description}
                             onChange={(event) =>
-                              handleOnchange(
-                                'ANSWER',
-                                question.id,
-                                answer.id,
-                                event.target.value
-                              )
+                              handleOnchange({
+                                type: 'ANSWER',
+                                questionId: question.id,
+                                answerId: answer.id,
+                                value: event.target.value,
+                              })
                             }
                             type='text'
                             className='form-control'
