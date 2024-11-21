@@ -10,8 +10,7 @@ import _ from 'lodash';
 import Lightbox from 'react-awesome-lightbox';
 import {
   getAllQuizForAdmin,
-  postCreateNewQuestionForQuiz,
-  postCreateNewAnswerForQuestion,
+  postUpsertQA,
   getQuizQA,
 } from '../../../../services/apiServices';
 import { toast } from 'react-toastify';
@@ -231,7 +230,13 @@ const QuizQA = (props) => {
     }
     setQuestions(questionsClone);
   };
-
+  const toBase64 = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+    });
   const handleSubmitQuestionForQuiz = async () => {
     console.log('questions ', questions, selectedQuiz);
     if (_.isEmpty(selectedQuiz)) {
@@ -255,26 +260,26 @@ const QuizQA = (props) => {
         return;
       }
     }
-
-    for (const question of questions) {
-      const q = await postCreateNewQuestionForQuiz(
-        +selectedQuiz.value,
-        question.description,
-        question.imageFile
-      );
-
-      for (const answer of question.answers) {
-        await postCreateNewAnswerForQuestion(
-          answer.description,
-          answer.isCorrect,
-          q.DT.id
+    let questionsClone = _.cloneDeep(questions);
+    for (let i = 0; i < questionsClone.length; i++) {
+      if (questionsClone[i].imageFile) {
+        questionsClone[i].imageFile = await toBase64(
+          questionsClone[i].imageFile
         );
       }
     }
-    toast.success('Create QA succeed!');
-    setQuestions(initQuestions);
+
+    let res = await postUpsertQA({
+      quizId: selectedQuiz.value,
+      questions: questionsClone,
+    });
+    if (res && res.EC === 0) {
+      toast.success(res.EM);
+    }
+    fetchQuizWithQa();
+    console.log('res,', res);
   };
-  console.log('>>check questions', questions);
+  // console.log('>>check questions', questions);
   return (
     <div className='questions-container'>
       <div className='add-new-question'>
