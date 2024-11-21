@@ -5,6 +5,7 @@ import { postRegister } from '../../services/apiServices';
 import { toast } from 'react-toastify';
 import { FaEyeSlash } from 'react-icons/fa';
 import { VscEye, VscEyeClosed } from 'react-icons/vsc'; // VSCode Icons
+import Language from '../Header/Language';
 const Register = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -46,6 +47,7 @@ const Register = (props) => {
       <div className='header mx-auto'>
         <span>Already have an account?</span>
         <button onClick={() => navigate('../Login')}>Log in</button>
+        <Language />
       </div>
       <div className='title col-4 mx-auto'>Sign up now</div>
       <div className='welcome col-4  mx-auto'>Start your journey?</div>
