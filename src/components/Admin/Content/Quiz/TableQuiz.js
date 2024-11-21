@@ -27,7 +27,7 @@ const TableQuiz = (props) => {
     let res = await getAllQuizForAdmin();
     if (res && res.EC === 0) {
       setListQuiz(res.DT);
-      console.log('List quiz', res.DT);
+      // console.log('List quiz', res.DT);
     }
   };
   const handleClickBtnUpdate = (quiz) => {

@@ -139,12 +139,7 @@ const Questions = (props) => {
   const handleOnchangeFile = (questionId, event) => {
     let questionsClone = _.cloneDeep(questions);
     let index = questionsClone.findIndex((item) => item.id === questionId);
-    if (
-      index !== -1 &&
-      event.target &&
-      event.target.files &&
-      event.target.files[0]
-    ) {
+    if (index > -1) {
       questionsClone[index].imageFile = event.target.files[0];
       questionsClone[index].imageName = event.target.files[0].name;
       setQuestions(questionsClone);
@@ -152,16 +147,14 @@ const Questions = (props) => {
   };
 
   const handlePreviewImage = (questionId) => {
-    console.log(questionId);
     let questionsClone = _.cloneDeep(questions);
-
     const currentImageIndex = questionsClone.findIndex(
       (item) => item.id === questionId
     );
     if (currentImageIndex > -1) {
       setdataImagePreview({
         title: questionsClone[currentImageIndex].imageName,
-        url: questionsClone[currentImageIndex].imageFile,
+        url: URL.createObjectURL(questionsClone[currentImageIndex].imageFile),
       });
       setIsPreviewImage(true);
     }
@@ -368,7 +361,7 @@ const Questions = (props) => {
 
         {isPreviewImage === true && (
           <Lightbox
-            image={URL.createObjectURL(dataImagePreview.url)}
+            image={dataImagePreview.url}
             title={dataImagePreview.title}
             onClose={() => setIsPreviewImage(false)}
           ></Lightbox>

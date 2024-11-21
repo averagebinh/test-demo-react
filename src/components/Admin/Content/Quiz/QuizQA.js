@@ -12,6 +12,7 @@ import {
   getAllQuizForAdmin,
   postCreateNewQuestionForQuiz,
   postCreateNewAnswerForQuestion,
+  getQuizQA,
 } from '../../../../services/apiServices';
 import { toast } from 'react-toastify';
 
@@ -42,10 +43,35 @@ const QuizQA = (props) => {
   });
   // get all quiz
   const [listQuiz, setListQuiz] = useState([]);
-  const [selectedQuiz, setSelectedQuiz] = useState(null);
+  const [selectedQuiz, setSelectedQuiz] = useState({});
   useEffect(() => {
     fetchQuiz();
   }, []);
+
+  useEffect(() => {
+    if (selectedQuiz && selectedQuiz.value) {
+      fetchQuizWithQa();
+    }
+  }, [selectedQuiz]);
+
+  // return a promise that resolves with a File instance
+  function urltoFile(url, filename, mimeType) {
+    if (url.startsWith('data:')) {
+      var arr = url.split(','),
+        mime = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[arr.length - 1]),
+        n = bstr.length,
+        u8arr = new Uint8Array(n);
+      while (n--) {
+        u8arr[n] = bstr.charCodeAt(n);
+      }
+      var file = new File([u8arr], filename, { type: mime || mimeType });
+      return Promise.resolve(file);
+    }
+    return fetch(url)
+      .then((res) => res.arrayBuffer())
+      .then((buf) => new File([buf], filename, { type: mimeType }));
+  }
 
   const fetchQuiz = async () => {
     let res = await getAllQuizForAdmin();
@@ -57,10 +83,49 @@ const QuizQA = (props) => {
         };
       });
       setListQuiz(newQuiz);
-      console.log('List quiz', res.DT);
+
+      // console.log('List quiz', res.DT);
     }
   };
-  console.log('list quiz', listQuiz);
+  // return a promise that resolves with a File instance
+  function urltoFile(url, filename, mimeType) {
+    if (url.startsWith('data:')) {
+      var arr = url.split(','),
+        mime = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[arr.length - 1]),
+        n = bstr.length,
+        u8arr = new Uint8Array(n);
+      while (n--) {
+        u8arr[n] = bstr.charCodeAt(n);
+      }
+      var file = new File([u8arr], filename, { type: mime || mimeType });
+      return Promise.resolve(file);
+    }
+    return fetch(url)
+      .then((res) => res.arrayBuffer())
+      .then((buf) => new File([buf], filename, { type: mimeType }));
+  }
+
+  const fetchQuizWithQa = async () => {
+    let res = await getQuizQA(+selectedQuiz.value);
+    if (res && res.EC === 0) {
+      //convert string 64 to blob
+      let newQA = [];
+      for (let i = 0; i < res.DT.qa.length; i++) {
+        let q = res.DT.qa[i];
+        if (q.imageFile) {
+          q.imageName = `Question-${q.id}.png`;
+          q.imageFile = await urltoFile(
+            `data:image/png;base64,${q.imageFile}`,
+            `Question-${q.id}.png`,
+            'text/plain'
+          );
+        }
+        newQA.push(q);
+      }
+      setQuestions(newQA);
+    }
+  };
   const handleAddRemoveQuestion = (type, id) => {
     console.log('>>>check: ', type, id);
     if (type === 'ADD') {
@@ -152,7 +217,6 @@ const QuizQA = (props) => {
   };
 
   const handlePreviewImage = (questionId) => {
-    console.log(questionId);
     let questionsClone = _.cloneDeep(questions);
 
     const currentImageIndex = questionsClone.findIndex(
@@ -161,10 +225,11 @@ const QuizQA = (props) => {
     if (currentImageIndex > -1) {
       setdataImagePreview({
         title: questionsClone[currentImageIndex].imageName,
-        url: questionsClone[currentImageIndex].imageFile,
+        url: URL.createObjectURL(questionsClone[currentImageIndex].imageFile),
       });
       setIsPreviewImage(true);
     }
+    setQuestions(questionsClone);
   };
 
   const handleSubmitQuestionForQuiz = async () => {
@@ -209,7 +274,7 @@ const QuizQA = (props) => {
     toast.success('Create QA succeed!');
     setQuestions(initQuestions);
   };
-
+  console.log('>>check questions', questions);
   return (
     <div className='questions-container'>
       <div className='add-new-question'>
@@ -365,7 +430,7 @@ const QuizQA = (props) => {
 
         {isPreviewImage === true && (
           <Lightbox
-            image={URL.createObjectURL(dataImagePreview.url)}
+            image={dataImagePreview.url}
             title={dataImagePreview.title}
             onClose={() => setIsPreviewImage(false)}
           ></Lightbox>

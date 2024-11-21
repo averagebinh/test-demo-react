@@ -17,7 +17,6 @@ const ModalUpdateQuiz = (props) => {
   const [previewImage, setPreviewImage] = useState('');
 
   useEffect(() => {
-    console.log('run effect in Modal Update', dataUpdateQuiz);
     if (!_.isEmpty(dataUpdateQuiz)) {
       //update state
       setName(dataUpdateQuiz.name);
