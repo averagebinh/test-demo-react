@@ -6,6 +6,7 @@ import './DetailQuiz.scss';
 import Question from './Question';
 import ModalResult from './ModalResult';
 import RightContent from './Content/RightContent';
+
 const DetailQuiz = (props) => {
   const params = useParams();
   const location = useLocation();
@@ -49,6 +50,8 @@ const DetailQuiz = (props) => {
             item.answers.isSelected = false;
             answers.push(item.answers);
           });
+          //lodash order id in ascending
+          answers = _.orderBy(answers, ['id'], ['asc']);
           // console.log('value', value, 'key', key);
           return { questionId: key, answers, questionDescription, image };
         })
@@ -91,6 +94,7 @@ const DetailQuiz = (props) => {
       setDataQuiz(dataQuizClone); //update state
     }
   };
+
   const handleFinishQuiz = async () => {
     console.log('>>>check data before submit: ', dataQuiz);
     let payload = {
@@ -171,6 +175,7 @@ const DetailQuiz = (props) => {
           setIndex={setIndex}
         />
       </div>
+
       <ModalResult
         show={isShowResult}
         setShow={setIsShowResult}
