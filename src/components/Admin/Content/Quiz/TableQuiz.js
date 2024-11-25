@@ -9,8 +9,10 @@ import ModalUpdateQuiz from './ModalUpdateQuiz';
 import { toast } from 'react-toastify';
 import ModalDeleteUser from '../ModalDeleteUser';
 import ModalDeleteQuiz from './ModalDeleteQuiz';
+import { useTranslation } from 'react-i18next';
 
 const TableQuiz = (props) => {
+  const { t } = useTranslation();
   const [listQuiz, setListQuiz] = useState([]);
   const [showModalUpdateQuiz, setShowModalUpdateQuiz] = useState(false);
   const [showModalDeleteQuiz, setShowModalDeleteQuiz] = useState(false);
@@ -41,15 +43,15 @@ const TableQuiz = (props) => {
 
   return (
     <>
-      <div>List Quizzes:</div>
+      <div>{t('admin.manageQuiz.tableQuiz.title')}</div>
       <table className='table table-hover table-bordered my-2'>
         <thead>
           <tr>
-            <th scope='col'>ID</th>
-            <th scope='col'>Name</th>
-            <th scope='col'>Description</th>
-            <th scope='col'>Type</th>
-            <th scope='col'>Actions</th>
+            <th scope='col'>{t('admin.manageQuiz.tableQuiz.id')}</th>
+            <th scope='col'>{t('admin.manageQuiz.tableQuiz.name')}</th>
+            <th scope='col'>{t('admin.manageQuiz.tableQuiz.description')}</th>
+            <th scope='col'>{t('admin.manageQuiz.tableQuiz.type')}</th>
+            <th scope='col'>{t('admin.manageQuiz.tableQuiz.action')}</th>
           </tr>
         </thead>
         <tbody>
@@ -66,13 +68,13 @@ const TableQuiz = (props) => {
                       className='btn btn-warning'
                       onClick={() => handleClickBtnUpdate(item)}
                     >
-                      Edit
+                      {t('admin.manageQuiz.tableQuiz.buttons.edit')}
                     </button>
                     <button
                       className='btn btn-danger'
                       onClick={() => handleClickBtnDelete(item)}
                     >
-                      Delete
+                      {t('admin.manageQuiz.tableQuiz.buttons.delete')}
                     </button>
                   </td>
                 </tr>

@@ -4,7 +4,175 @@
     "title2": "  You dont want to make a boring form. And your audience won't answer",
     "title3": {
       "login": "Get's started. It's free",
-      "user": "Doing Quiz Now"
+      "doing": "Doing Quiz Now"
     }
-  }
+  },
+  "header": {
+    "brand": "Quiz Maker",
+    "home": "Home",
+    "user": "Users",
+    "admin": "Admin",
+    "setting": "Setting",
+    "profile": "Profile",
+    "buttons": {
+      "login": "Log in",
+      "register": "Sign up",
+      "logout": "Log out"
+    },
+    "quiz": "Doing Quiz"
+  },
+  "quiz": {
+    "listQuiz": {
+      "button": "Start Now"
+    },
+    "detailQuiz": {
+      "title": "Quiz",
+      "buttons": {
+        "previous": "Prev",
+        "next": "Next",
+        "submit": "Finish"
+      },
+      "question": "Question"
+    },
+    "modalResult": {
+      "title": "Your Results",
+      "body": {
+        "question": "Total Questions:",
+        "correctAnswer": "Total correct answers:"
+      },
+      "buttons": {
+        "close": "Close",
+        "show": "Show answers"
+      }
+    }
+  },
+  "login": {
+    "intro": "Don't have an account yet?",
+    "button": "Sign up",
+    "brand": "Quiz Maker",
+    "welcome": "Take your quiz right now :)",
+    "form": {
+      "email": "Email",
+      "password": "Password",
+      "forgot": "Forgot password?",
+      "button": "Login to Quiz Maker",
+      "back": "Go to Homepage"
+    }
+  },
+  "register": {
+    "intro": "Already have an account?",
+    "button": "Log in",
+    "title": "Sign up now",
+
+    "welcome": "Start your journey?",
+    "form": {
+      "email": "Email (*)",
+      "password": "Password (*)",
+      "username": "Username",
+      "forgot": "Forgot password ?",
+      "button": "Create my free account"
+    },
+
+    "back": "Go to Homepage"
+  },
+  "admin": {
+    "profile": "Profile",
+    "logout": "Log out",
+    "sidebar": {
+      "brand": "Quiz Maker",
+      "feature-1": "Dashboard",
+      "feature-2": "Users Management",
+      "feature-3": "Quizzes Management",
+      "feature-4": "Questions Management",
+      "viewSource": "View Source"
+    },
+    "dashboard": {
+      "title": "Analytic DashBoard",
+      "users": "Total users",
+      "quizzes": "Total quizzes",
+      "questions": "Total questions",
+      "answers": "Total answers"
+    },
+    "manageUser": {
+      "title": "Manage Users",
+      "button": "Add new user",
+      "title-create": "Create a new user",
+      "title-view": "View a user",
+      "title-edit": "Update a user",
+      "form": {
+        "email": "Email",
+        "password": "Password",
+        "username": "Username",
+        "role": "Role",
+        "options": {
+          "admin": "ADMIN",
+          "user": "USER"
+        },
+        "preview": "Preview Image",
+        "upload": "Upload File Image",
+        "button-close": "Close",
+        "button-save": "Save"
+      }
+    },
+
+    "manageQuiz": {
+      "add-new": "Add new quiz",
+      "label-1": "Name",
+      "label-2": "Description",
+      "upload": "Upload Image",
+      "button": "Save",
+      "header-1": "Manage Quizzes",
+      "header-2": "Update Quizzes",
+      "header-3": "Assign Quiz to User",
+      "tableQuiz": {
+        "title": "List Quizzes:",
+        "id": "ID",
+        "name": "Name",
+        "description": "Description",
+        "type": "Type",
+        "action": "Action",
+        "buttons": {
+          "edit": "Edit",
+          "delete": "Delete"
+        }
+      },
+      "quizQA": {
+        "title": "Select Quiz",
+        "title-2": "Add questions:",
+        "question": "Question",
+        "button": "Save Questions"
+      },
+      "assignQuiz": {
+        "select-1": "Select Quiz",
+        "select-2": "Select User",
+        "button": "Assign"
+      },
+      "manageQuestion": {
+        "title": "Manage Questions",
+        "title-2": "Select Quiz",
+        "title-3": "Add questions:",
+        "label-1": "Question",
+        "label-2": "'s description",
+        "answer": "answers",
+        "button": "Save Questions",
+        "notuploaded": "0 file is uploaded"
+      }
+    },
+
+    "userPaginate": {
+      "head": {
+        "id": "ID",
+        "email": "Email",
+        "username": "Username",
+        "role": "Role",
+        "button": {
+          "view": "View",
+          "update": "Update",
+          "delete": "Delete"
+        },
+        "notfound": "Not Found"
+      }
+    }
+  },
+  "profile": {}
 }

@@ -12,7 +12,11 @@ import ModalUpdateUser from './ModalUpdateUser';
 import ModalViewUser from './ModalViewUser';
 import ModalDeleteUser from './ModalDeleteUser';
 import TableUserPaginate from './TableUserPaginate';
+import { useTranslation } from 'react-i18next';
+
 const ManageUser = () => {
+  const { t } = useTranslation();
+
   const LIMIT_USER = 6;
   const [pageCount, setPageCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
@@ -68,7 +72,7 @@ const ManageUser = () => {
 
   return (
     <div className='manage-user-container'>
-      <div className='title'>Manage Users</div>
+      <div className='title'>{t('admin.manageUser.title')}</div>
 
       <div className='users-content'>
         <div className='btn-add-new'>
@@ -77,7 +81,7 @@ const ManageUser = () => {
             onClick={() => setShowModalCreateUser(true)}
           >
             <FcPlus />
-            Add new users
+            {t('admin.manageUser.button')}
           </button>
         </div>
         <div className='table-users-container'>

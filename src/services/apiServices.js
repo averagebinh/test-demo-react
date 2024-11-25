@@ -113,6 +113,10 @@ const logout = (email, refresh_token) => {
     refresh_token,
   });
 };
+
+const getOverView = () => {
+  return axios.get(`api/v1/overview`);
+};
 export {
   postCreateNewUser,
   getAllUsers,
@@ -134,4 +138,5 @@ export {
   getQuizQA,
   postUpsertQA,
   logout,
+  getOverView,
 };

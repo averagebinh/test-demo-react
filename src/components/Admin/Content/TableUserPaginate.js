@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
 import { getAllUsers } from '../../../services/apiServices';
 import ReactPaginate from 'react-paginate';
+import { useTranslation } from 'react-i18next';
 
 const TableUserPaginate = (props) => {
+  const { t } = useTranslation();
+
   const { listUsers, pageCount } = props;
 
   // Invoke when user click to request another page.
@@ -16,10 +19,10 @@ const TableUserPaginate = (props) => {
       <table className='table table-hover table-bordered'>
         <thead>
           <tr>
-            <th scope='col'>ID</th>
-            <th scope='col'>Username</th>
-            <th scope='col'>Email</th>
-            <th scope='col'>Role</th>
+            <th scope='col'>{t('admin.userPaginate.head.id')}</th>
+            <th scope='col'>{t('admin.userPaginate.head.username')}</th>
+            <th scope='col'>{t('admin.userPaginate.head.email')}</th>
+            <th scope='col'>{t('admin.userPaginate.head.role')}</th>
           </tr>
         </thead>
         <tbody>
@@ -39,7 +42,7 @@ const TableUserPaginate = (props) => {
                         props.handleClickBtnView(user);
                       }}
                     >
-                      View
+                      {t('admin.userPaginate.head.button.view')}
                     </button>
                     <button
                       className='btn btn-warning mx-3'
@@ -47,13 +50,13 @@ const TableUserPaginate = (props) => {
                         props.handleClickBtnUpdate(user);
                       }}
                     >
-                      Update
+                      {t('admin.userPaginate.head.button.update')}
                     </button>
                     <button
                       className='btn btn-danger'
                       onClick={() => props.handleClickBtnDelete(user)}
                     >
-                      Delete
+                      {t('admin.userPaginate.head.button.delete')}
                     </button>
                   </td>
                 </tr>
@@ -61,7 +64,7 @@ const TableUserPaginate = (props) => {
             })}
           {listUsers && listUsers.length === 0 && (
             <tr>
-              <td colSpan={5}>Not Found</td>
+              <td colSpan={5}> {t('admin.userPaginate.head.notfound')}</td>
             </tr>
           )}
         </tbody>

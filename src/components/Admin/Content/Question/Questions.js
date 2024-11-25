@@ -14,8 +14,11 @@ import {
   postCreateNewAnswerForQuestion,
 } from '../../../../services/apiServices';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 const Questions = (props) => {
+  const { t } = useTranslation();
+
   // Fake data
   const initQuestions = [
     {
@@ -205,12 +208,14 @@ const Questions = (props) => {
 
   return (
     <div className='questions-container'>
-      <div className='title'>Manage Questions</div>
+      <div className='title'>{t('admin.manageQuiz.manageQuestion.title')}</div>
       <hr />
 
       <div className='add-new-question'>
         <div className='col-6 form-group'>
-          <label className='mb-2'>Select Quiz</label>
+          <label className='mb-2'>
+            {t('admin.manageQuiz.manageQuestion.title-2')}
+          </label>
           <Select
             defaultValue={selectedQuiz}
             onChange={setSelectedQuiz}
@@ -218,7 +223,9 @@ const Questions = (props) => {
           />
         </div>
 
-        <div className='mt-3 mb-2'> Add questions:</div>
+        <div className='mt-3 mb-2'>
+          {t('admin.manageQuiz.manageQuestion.title-3')}
+        </div>
         {/* create QA form fake data */}
         {questions &&
           questions.length > 0 &&
@@ -241,7 +248,10 @@ const Questions = (props) => {
                         })
                       }
                     />
-                    <label>Question {index + 1}'s description </label>
+                    <label>
+                      {t('admin.manageQuiz.manageQuestion.label-1')} {index + 1}
+                      {t('admin.manageQuiz.manageQuestion.label-2')}
+                    </label>
                   </div>
                   <div className='group-upload '>
                     <label htmlFor={`${question.id}`} className='label-upload'>
@@ -265,7 +275,9 @@ const Questions = (props) => {
                           {question.imageName}
                         </span>
                       ) : (
-                        '0 file is uploaded'
+                        <span>
+                          {t('admin.manageQuiz.manageQuestion.notuploaded')}
+                        </span>
                       )}
                     </span>
                   </div>
@@ -318,7 +330,11 @@ const Questions = (props) => {
                             className='form-control'
                             placeholder='name@example.com'
                           />
-                          <label>answers {index + 1}</label>
+                          <label>
+                            {' '}
+                            {t('admin.manageQuiz.manageQuestion.answer')}{' '}
+                            {index + 1}
+                          </label>
                         </div>
                         <div className='btn-group'>
                           <span
@@ -354,7 +370,7 @@ const Questions = (props) => {
               onClick={() => handleSubmitQuestionForQuiz()}
               className='btn btn-warning'
             >
-              Save Questions
+              {t('admin.manageQuiz.manageQuestion.button')}
             </button>
           </div>
         )}

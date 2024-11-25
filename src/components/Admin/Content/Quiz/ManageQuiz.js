@@ -10,12 +10,15 @@ import TableQuiz from './TableQuiz';
 import Accordion from 'react-bootstrap/Accordion';
 import QuizQA from './QuizQA';
 import AssignQuiz from './AssignQuiz';
+import { useTranslation } from 'react-i18next';
 const options = [
   { value: 'EASY', label: 'EASY' },
   { value: 'MEDIUM', label: 'MEDIUM' },
   { value: 'HARD', label: 'HARD' },
 ];
 const ManageQuiz = (props) => {
+  const { t } = useTranslation();
+
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [quizType, setQuizType] = useState('EASY');
@@ -49,12 +52,12 @@ const ManageQuiz = (props) => {
     <div className='quiz-container'>
       <Accordion defaultActiveKey='0'>
         <Accordion.Item eventKey='0'>
-          <Accordion.Header>Manage Quizzes</Accordion.Header>
+          <Accordion.Header>{t('admin.manageQuiz.header-1')}</Accordion.Header>
           <Accordion.Body>
             <div className='add-new'>
               <fieldset className='border rounded-3 p-3'>
                 <legend className='float-none w-auto px-3'>
-                  Add New Quiz:
+                  {t('admin.manageQuiz.add-new')}
                 </legend>
                 <div className='form-floating mb-3'>
                   <input
@@ -64,7 +67,7 @@ const ManageQuiz = (props) => {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                   />
-                  <label>Name </label>
+                  <label>{t('admin.manageQuiz.label-1')} </label>
                 </div>
                 <div className='form-floating'>
                   <input
@@ -74,7 +77,7 @@ const ManageQuiz = (props) => {
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                   />
-                  <label>Description</label>
+                  <label>{t('admin.manageQuiz.label-2')}</label>
                 </div>
                 <div className='my-3'>
                   <Select
@@ -85,7 +88,7 @@ const ManageQuiz = (props) => {
                   />
                 </div>
                 <div className='more-action form-group '>
-                  <label className='mb-1'>Upload Image</label>
+                  <label className='mb-1'>{t('admin.manageQuiz.upload')}</label>
                   <input
                     type='file'
                     className='form-control'
@@ -98,7 +101,7 @@ const ManageQuiz = (props) => {
                     onClick={() => handleSubmitQuiz()}
                     className='btn btn-warning'
                   >
-                    Save
+                    {t('admin.manageQuiz.button')}
                   </button>
                 </div>
               </fieldset>
@@ -110,14 +113,14 @@ const ManageQuiz = (props) => {
         </Accordion.Item>
 
         <Accordion.Item eventKey='1'>
-          <Accordion.Header>Update Quizzes</Accordion.Header>
+          <Accordion.Header>{t('admin.manageQuiz.header-2')}</Accordion.Header>
           <Accordion.Body>
             <QuizQA />
           </Accordion.Body>
         </Accordion.Item>
 
         <Accordion.Item eventKey='2'>
-          <Accordion.Header>Assign Quiz to User</Accordion.Header>
+          <Accordion.Header>{t('admin.manageQuiz.header-3')}</Accordion.Header>
           <Accordion.Body>
             <AssignQuiz />
           </Accordion.Body>

@@ -3,7 +3,11 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FcPlus } from 'react-icons/fc';
 import _ from 'lodash';
+import { useTranslation } from 'react-i18next';
+
 const ModalViewUser = (props) => {
+  const { t } = useTranslation();
+
   const { show, setShow, dataUpdateUser } = props;
 
   const handleClose = () => {
@@ -43,12 +47,14 @@ const ModalViewUser = (props) => {
         className='modal-add-user'
       >
         <Modal.Header closeButton>
-          <Modal.Title>View a user</Modal.Title>
+          <Modal.Title>{t('admin.manageUser.title-view')}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form className='row g-3'>
             <div className='col-md-6'>
-              <label className='form-label'>Email</label>
+              <label className='form-label'>
+                {t('admin.manageUser.form.email')}
+              </label>
               <input
                 type='email'
                 className='form-control'
@@ -58,7 +64,9 @@ const ModalViewUser = (props) => {
               />
             </div>
             <div className='col-md-6'>
-              <label className='form-label'>Password</label>
+              <label className='form-label'>
+                {t('admin.manageUser.form.password')}
+              </label>
               <input
                 type='password'
                 className='form-control'
@@ -68,7 +76,9 @@ const ModalViewUser = (props) => {
               />
             </div>
             <div className='col-md-6'>
-              <label className='form-label'>Username</label>
+              <label className='form-label'>
+                {t('admin.manageUser.form.username')}
+              </label>
               <input
                 type='text'
                 className='form-control'
@@ -78,7 +88,9 @@ const ModalViewUser = (props) => {
               />
             </div>
             <div className='col-md-4'>
-              <label className='form-label'>Role</label>
+              <label className='form-label'>
+                {t('admin.manageUser.form.role')}
+              </label>
 
               <select
                 className='form-select'
@@ -86,14 +98,18 @@ const ModalViewUser = (props) => {
                 value={role}
                 disabled
               >
-                <option value='USER'>USER</option>
-                <option value='ADMIN'>ADMIN</option>
+                <option value='USER'>
+                  {t('admin.manageUser.form.options.user')}
+                </option>
+                <option value='ADMIN'>
+                  {t('admin.manageUser.form.options.admin')}
+                </option>
               </select>
             </div>
             <div className='col-md-12'>
               <label className='form-label label-upload' htmlFor='labelUpload'>
                 <FcPlus />
-                Upload File Image
+                {t('admin.manageUser.form.upload')}
               </label>
               <input
                 disabled
@@ -107,7 +123,7 @@ const ModalViewUser = (props) => {
               {previewImage ? (
                 <img src={previewImage} />
               ) : (
-                <span className=''>Preview Image</span>
+                <span className=''>{t('admin.manageUser.form.preview')}</span>
               )}
             </div>
           </form>
@@ -115,7 +131,7 @@ const ModalViewUser = (props) => {
 
         <Modal.Footer>
           <Button variant='secondary' onClick={() => handleClose()}>
-            Close
+            {t('admin.manageUser.form.button-close')}
           </Button>
         </Modal.Footer>
       </Modal>

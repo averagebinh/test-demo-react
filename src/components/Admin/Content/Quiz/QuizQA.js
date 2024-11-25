@@ -14,8 +14,9 @@ import {
   getQuizQA,
 } from '../../../../services/apiServices';
 import { toast } from 'react-toastify';
-
+import { useTranslation } from 'react-i18next';
 const QuizQA = (props) => {
+  const { t } = useTranslation();
   // Fake data
   const initQuestions = [
     {
@@ -284,7 +285,7 @@ const QuizQA = (props) => {
     <div className='questions-container'>
       <div className='add-new-question'>
         <div className='col-6 form-group'>
-          <label className='mb-2'>Select Quiz</label>
+          <label className='mb-2'>{t('admin.manageQuiz.quizQA.title')}</label>
           <Select
             defaultValue={selectedQuiz}
             onChange={setSelectedQuiz}
@@ -292,7 +293,7 @@ const QuizQA = (props) => {
           />
         </div>
 
-        <div className='mt-3 mb-2'> Add questions:</div>
+        <div className='mt-3 mb-2'>{t('admin.manageQuiz.quizQA.title-2')}</div>
         {/* create QA form fake data */}
         {questions &&
           questions.length > 0 &&
@@ -315,7 +316,10 @@ const QuizQA = (props) => {
                         })
                       }
                     />
-                    <label>Question {index + 1}'s description </label>
+                    <label>
+                      {t('admin.manageQuiz.quizQA.question')} {index + 1}'s
+                      description{' '}
+                    </label>
                   </div>
                   <div className='group-upload '>
                     <label htmlFor={`${question.id}`} className='label-upload'>
@@ -428,7 +432,7 @@ const QuizQA = (props) => {
               onClick={() => handleSubmitQuestionForQuiz()}
               className='btn btn-warning'
             >
-              Save Questions
+              {t('admin.manageQuiz.quizQA.button')}
             </button>
           </div>
         )}

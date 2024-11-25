@@ -22,9 +22,12 @@ import { DiReact } from 'react-icons/di';
 import { MdDashboard } from 'react-icons/md';
 import './SideBar.scss';
 import { Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const SideBar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
+
   return (
     <>
       <ProSidebar
@@ -49,7 +52,9 @@ const SideBar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
           >
             <DiReact size={'3em'} color={'00bfff'} />
 
-            <span onClick={() => navigate('/')}>Quiz App</span>
+            <span onClick={() => navigate('/')}>
+              {t('admin.sidebar.brand')}
+            </span>
           </div>
         </SidebarHeader>
 
@@ -59,23 +64,22 @@ const SideBar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
               icon={<FaTachometerAlt />}
               //   suffix={<span className='badge red'>New</span>}
             >
-              Dashboard
+              {t('admin.sidebar.feature-1')}
               <Link to='/admins' />
             </MenuItem>
           </Menu>
           <Menu iconShape='circle'>
             <SubMenu icon={<FaGem />} title='Features'>
               <MenuItem>
-                Quản lý users
+                {t('admin.sidebar.feature-2')}
                 <Link to='/admins/manage-users' />
               </MenuItem>
               <MenuItem>
-                Quản lý bài quiz
+                {t('admin.sidebar.feature-3')}
                 <Link to='/admins/manage-quizzes' />
               </MenuItem>
               <MenuItem>
-                {' '}
-                Quản lý câu hỏi
+                {t('admin.sidebar.feature-4')}
                 <Link to='/admins/manage-questions' />
               </MenuItem>
             </SubMenu>
@@ -103,7 +107,7 @@ const SideBar = ({ image, collapsed, toggled, handleToggleSidebar }) => {
                   overflow: 'hidden',
                 }}
               >
-                viewSource
+                {t('admin.sidebar.viewSource')}
               </span>
             </a>
           </div>

@@ -2,7 +2,10 @@ import { useEffect, useState } from 'react';
 import { getQuizByUser } from '../../services/apiServices';
 import './ListQuiz.scss';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
 const ListQuiz = (props) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [arrQuiz, setArrQuiz] = useState([]);
   //goi 1 lan duy nhat
@@ -46,7 +49,7 @@ const ListQuiz = (props) => {
                       })
                     }
                   >
-                    Start Now
+                    {t('quiz.listQuiz.button')}
                   </button>
                 </div>
               </div>
