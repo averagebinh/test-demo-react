@@ -174,5 +174,7 @@
       }
     }
   },
-  "profile": {}
+  "profile": {
+    "title": "manage user information"
+  }
 }
