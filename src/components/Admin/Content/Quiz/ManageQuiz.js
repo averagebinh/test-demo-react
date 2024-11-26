@@ -13,6 +13,7 @@ import AssignQuiz from './AssignQuiz';
 import { useTranslation } from 'react-i18next';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
+
 const options = [
   { value: 'EASY', label: 'EASY' },
   { value: 'MEDIUM', label: 'MEDIUM' },
@@ -56,8 +57,13 @@ const ManageQuiz = (props) => {
         defaultActiveKey='profile'
         id='uncontrolled-tab-example'
         className='mb-3'
+        justify
       >
-        <Tab eventKey='create quiz' title='Create Quiz'>
+        <Tab
+          className='p-3 pt-0'
+          eventKey='create quiz'
+          title={t('admin.manageQuiz.header-1')}
+        >
           <div className='add-new'>
             <fieldset className='border rounded-3 p-3'>
               <legend className='float-none w-auto px-3'>
@@ -114,10 +120,18 @@ const ManageQuiz = (props) => {
             <TableQuiz />
           </div>
         </Tab>
-        <Tab eventKey='update quiz' title='Update Quiz'>
+        <Tab
+          className='p-3 pt-0'
+          eventKey='update quiz'
+          title={t('admin.manageQuiz.header-2')}
+        >
           <QuizQA />
         </Tab>
-        <Tab eventKey='assign quiz' title='Assign Quiz'>
+        <Tab
+          className='p-3 pt-0'
+          eventKey='assign quiz'
+          title={t('admin.manageQuiz.header-3')}
+        >
           <AssignQuiz />
         </Tab>
       </Tabs>

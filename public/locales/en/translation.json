@@ -122,7 +122,7 @@
       "upload": "Upload Image",
       "button": "Save",
       "header-1": "Manage Quizzes",
-      "header-2": "Update Quizzes",
+      "header-2": "Update Q/A for Quizzes",
       "header-3": "Assign Quiz to User",
       "tableQuiz": {
         "title": "List Quizzes:",
