@@ -2,12 +2,13 @@ import _ from 'lodash';
 import { useState } from 'react';
 import Lightbox from 'react-awesome-lightbox';
 import { useTranslation } from 'react-i18next';
+import { IoIosClose, IoIosCheckmark } from 'react-icons/io';
 
 const Question = (props) => {
   const { t } = useTranslation();
-
-  const { data, index } = props;
+  const { data, index, isShowAnswer } = props;
   const [isPreviewImage, setIsPreviewImage] = useState(false);
+
   if (_.isEmpty(data)) return <></>;
 
   //id answer-question-id aId, qId
@@ -15,7 +16,6 @@ const Question = (props) => {
   const handleCheckbox = (e, aId, qId) => {
     props.handleAnswerSelection(aId, qId);
   };
-
   return (
     <>
       {data.image ? (
@@ -43,21 +43,34 @@ const Question = (props) => {
       <div className='answer'>
         {data.answers &&
           data.answers.length &&
-          data.answers.map((answer, index) => {
+          data.answers.map((answer, i) => {
             return (
-              <div key={`${index}-answer`} className='a-child'>
+              <div key={`${i}-answer`} className='a-child'>
                 <div className='form-check'>
                   <input
+                    id={`${index}-${i}`}
                     className='form-check-input'
                     type='checkbox'
                     checked={answer.isSelected}
+                    disabled={props.isSubmitQuiz}
                     onChange={(e) =>
                       handleCheckbox(e, answer.id, data.questionId)
                     }
                   />
-                  <label className='form-check-label'>
+                  <label htmlFor={`${index}-${i}`} className='form-check-label'>
                     {answer.description}
                   </label>
+                  {isShowAnswer === true && (
+                    <>
+                      {answer.isSelected && !answer.isCorrect && (
+                        <IoIosClose className='incorrect' />
+                      )}
+
+                      {answer.isCorrect === true && (
+                        <IoIosCheckmark className='correct' />
+                      )}
+                    </>
+                  )}
                 </div>
               </div>
             );

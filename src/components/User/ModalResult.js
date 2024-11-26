@@ -27,7 +27,13 @@ const ModalResult = (props) => {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant='secondary' onClick={handleClose}>
+          <Button
+            variant='secondary'
+            onClick={() => {
+              handleClose();
+              props.handleShowAnswer();
+            }}
+          >
             {t('quiz.modalResult.buttons.show')}
           </Button>
           <Button variant='primary' onClick={handleClose}>

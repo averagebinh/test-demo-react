@@ -25,6 +25,8 @@ const DetailQuiz = (props) => {
 
   const [isShowResult, setIsShowResult] = useState(false);
   const [dataModal, setDataModal] = useState({});
+  const [isSubmitQuiz, setIsSubmitQuiz] = useState(false);
+  const [isShowAnswer, setIsShowAnswer] = useState(false);
 
   //get data quiz, parent component hold state data, later pass to child component (each question)
   useEffect(() => {
@@ -53,6 +55,8 @@ const DetailQuiz = (props) => {
             }
             // add isSelected prop to each answer and push to answers array
             item.answers.isSelected = false;
+            item.answers.isCorrect = false;
+
             answers.push(item.answers);
           });
           //lodash order id in ascending
@@ -96,6 +100,7 @@ const DetailQuiz = (props) => {
     ); //find index of question
     if (index > -1) {
       dataQuizClone[index] = question; //update question
+      console.log(dataQuizClone);
       setDataQuiz(dataQuizClone); //update state
     }
   };
@@ -126,18 +131,50 @@ const DetailQuiz = (props) => {
       let res = await postSubmitQuiz(payload);
       console.log('>>>check res: ', res);
       if (res.EC === 0) {
+        setIsSubmitQuiz(true);
         setDataModal({
           countCorrect: res.DT.countCorrect,
           countTotal: res.DT.countTotal,
           quizData: res.DT.quizData,
         });
         setIsShowResult(true);
+      }
+
+      //update DataQuiz with correct answer
+      if (res.DT && res.DT.quizData) {
+        let dataQuizClone = _.cloneDeep(dataQuiz);
+        let quizData = res.DT.quizData;
+
+        for (let q of quizData) {
+          // Find the matching question in dataQuizClone
+          let question = dataQuizClone.find(
+            (item) => +item.questionId === +q.questionId
+          );
+
+          if (question) {
+            // Update the answers for the matching question
+            for (let answer of question.answers) {
+              // Check if the current answer matches a correct system answer
+              let correctAnswer = q.systemAnswers.find(
+                (systemAnswer) => +systemAnswer.id === +answer.id
+              );
+
+              if (correctAnswer) {
+                answer.isCorrect = true; // Mark as correct if it matches
+              }
+            }
+          }
+        }
+        setDataQuiz(dataQuizClone);
       } else {
         alert('Submit quiz failed');
       }
     }
   };
-
+  const handleShowAnswer = () => {
+    if (!isSubmitQuiz) return;
+    setIsShowAnswer(true);
+  };
   return (
     <>
       <Breadcrumb className='quiz-detail-new-header'>
@@ -164,6 +201,8 @@ const DetailQuiz = (props) => {
           <div className='q-content'>
             <Question
               index={index}
+              isShowAnswer={isShowAnswer}
+              isSubmitQuiz={isSubmitQuiz}
               handleAnswerSelection={handleAnswerSelection}
               data={dataQuiz && dataQuiz.length > 0 ? dataQuiz[index] : []}
             />
@@ -178,6 +217,7 @@ const DetailQuiz = (props) => {
               {t('quiz.detailQuiz.buttons.next')}
             </button>
             <button
+              disabled={isSubmitQuiz}
               className='btn btn-warning'
               onClick={() => handleFinishQuiz()}
             >
@@ -197,6 +237,7 @@ const DetailQuiz = (props) => {
           show={isShowResult}
           setShow={setIsShowResult}
           dataModal={dataModal}
+          handleShowAnswer={handleShowAnswer}
         />
       </div>
     </>

@@ -4,12 +4,10 @@ import CountDown from './CountDown';
 const RightContent = (props) => {
   const refDiv = useRef([]);
   const { dataQuiz } = props;
-  console.log('dataQuiz ', dataQuiz);
   const onTimeUp = () => {
     props.handleFinishQuiz();
   };
   const getClassQuestion = (question, index) => {
-    console.log(question, index);
     //check answered
     if (question && question.answers.length > 0) {
       let isAnswered = question.answers.find((a) => a.isSelected === true);
@@ -24,7 +22,6 @@ const RightContent = (props) => {
 
   const handleClickQuestion = (question, index) => {
     if (refDiv.current) {
-      console.log(refDiv.current);
       refDiv.current.forEach((item) => {
         if (item && item.className === 'question clicked') {
           item.className = 'question';
