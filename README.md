@@ -74,3 +74,20 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 # install react-router-dom bootstrap and react bootstrap
 
 npm install --save-exact react-router-dom@6.3.0 bootstrap@5.2.0 react-bootstrap@2.4.0
+
+# install React-Pro-SideBar
+
+npm install --save-exact react-pro-sidebar@0.7.1
+
+# install react-icons
+
+read https://github.com/react-icons/react-icons
+Configuration to style icons
+
+# Redux steps
+
+1. Khai báo dispatch + actions
+2. Khai báo reducer + logic
+3. Sử dụng state của Redux
+
+# 86 Xử lý data khi chọn câu trả lời

@@ -1,0 +1,178 @@
+{
+  "homepage": {
+    "title1": "Có rất nhiều cách để hỏi...",
+    "title2": "và Cách dễ nhất là thử làm cái bài quizz...",
+    "title3": {
+      "login": "Làm bài Quiz ngay",
+      "doing": "Doing Quiz Now"
+    }
+  },
+  "header": {
+    "brand": "Quiz Maker",
+    "home": "Trang chủ",
+    "user": "Người dùng",
+    "admin": "Quản trị",
+    "setting": "Cài đặt",
+    "profile": "Hồ sơ",
+    "buttons": {
+      "login": "Đăng nhập",
+      "register": "Đăng ký",
+      "logout": "Đăng xuất",
+      "quiz": "Làm bài Quiz"
+    }
+  },
+  "quiz": {
+    "listQuiz": {
+      "button": "Bắt đầu"
+    },
+    "detailQuiz": {
+      "title": "Quiz",
+      "buttons": {
+        "previous": "Trước",
+        "next": "Sau",
+        "submit": "Nộp bài"
+      },
+      "question": "Câu hỏi"
+    },
+    "modalResult": {
+      "title": "Kết quả của bạn",
+      "body": {
+        "question": "Tổng số câu hỏi:",
+        "correctAnswer": "Tổng số câu trả lời đúng:"
+      },
+      "buttons": {
+        "close": "Đóng",
+        "show": "Hiển thị câu trả lời"
+      }
+    }
+  },
+  "login": {
+    "intro": "Chưa có tài khoản?",
+    "button": "Đăng ký",
+    "brand": "Quiz Maker",
+    "welcome": "Bắt đầu bài quiz của bạn :)",
+    "form": {
+      "email": "Email",
+      "password": "Mật khẩu",
+      "forgot": "Quên mật khẩu?",
+      "button": "Đăng nhập",
+      "back": "Trở về trang chủ"
+    }
+  },
+  "register": {
+    "intro": "Đã có tài khoản?",
+    "button": "Đăng nhập",
+    "title": "Đăng ký ngay",
+
+    "welcome": "Bắt đầu hành trình của bạn?",
+    "form": {
+      "email": "Email (*)",
+      "password": "Mật khẩu (*)",
+      "username": "Tên người dùng",
+      "forgot": "Quên mật khẩu?",
+      "button": "Đăng ký"
+    },
+
+    "back": "Trở về trang chủ"
+  },
+  "admin": {
+    "profile": "Hồ sơ",
+    "logout": "Đăng xuất",
+    "sidebar": {
+      "brand": "Quiz Maker",
+      "feature-1": "Bảng điều khiển",
+      "feature-2": "Quản lý người dùng",
+      "feature-3": "Quản lý bài quiz",
+      "feature-4": "Quản lý câu hỏi",
+      "viewSource": "Xem mã nguồn"
+    },
+    "dashboard": {
+      "title": "Bảng điều khiển",
+      "users": "Tổng số người dùng",
+      "quizzes": "Tổng số bài quiz",
+      "questions": "Tổng số câu hỏi",
+      "answers": "Tổng số câu trả lời"
+    },
+    "manageUser": {
+      "title": "Quản lý người dùng",
+      "button": "Thêm người dùng",
+      "title-create": "Tạo người dùng mới",
+      "title-view": "Xem người dùng",
+      "title-edit": "Cập nhật người dùng",
+      "form": {
+        "email": "Email",
+        "password": "Mật khẩu",
+        "username": "Tên người dùng",
+        "role": "Vai trò",
+        "options": {
+          "admin": "ADMIN",
+          "user": "USER"
+        },
+        "preview": "Xem trước ảnh",
+        "upload": "Tải ảnh lên",
+        "button-close": "Đóng",
+        "button-save": "Lưu"
+      }
+    },
+
+    "manageQuiz": {
+      "add-new": "Thêm bài quiz mới",
+      "label-1": "Tên",
+      "label-2": "Mô tả",
+      "upload": "Tải ảnh lên",
+      "button": "Lưu",
+      "header-1": "Quản lý bài quiz",
+      "header-2": "Cập nhật bài quiz",
+      "header-3": "Giao bài quiz",
+      "tableQuiz": {
+        "title": "Danh sách bài quiz",
+        "id": "ID",
+        "name": "Tên",
+        "description": "Mô tả",
+        "type": "Loại",
+        "action": "Hành động",
+        "buttons": {
+          "edit": "Chỉnh sửa",
+          "delete": "Xóa"
+        }
+      },
+      "quizQA": {
+        "title": "Chọn bài quiz",
+        "title-2": "Thêm câu hỏi:",
+        "question": "Câu hỏi",
+        "button": "Lưu câu hỏi"
+      },
+      "assignQuiz": {
+        "select-1": "Chọn bài quiz",
+        "select-2": "Chọn người dùng",
+        "button": "Giao bài quiz"
+      },
+      "manageQuestion": {
+        "title": "Quản lý câu hỏi",
+        "title-2": "Chọn bài quiz",
+        "title-3": "Thêm câu hỏi",
+        "label-1": "Câu hỏi",
+        "label-2": "",
+        "answer": "câu trả lời",
+        "button": "Lưu câu hỏi",
+        "notuploaded": "Chưa tải ảnh lên"
+      }
+    },
+
+    "userPaginate": {
+      "head": {
+        "id": "ID",
+        "email": "Email",
+        "username": "Tên người dùng",
+        "role": "Vai trò",
+        "button": {
+          "view": "Xem",
+          "update": "Cập nhật",
+          "delete": "Xóa"
+        },
+        "notfound": "Không tìm thấy"
+      }
+    }
+  },
+  "profile": {}
+}
